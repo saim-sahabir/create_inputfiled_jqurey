@@ -1,0 +1,311 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Dynamic Input Field Creator</title>
+    <!--by sahabir hasan saim -->
+    <!--www.sahabirit.com-->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<script src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.mycontent {
+ background-color: #E3F2FD;
+ margin-top: 65px;
+ padding: 37px;
+}
+
+.title3 {
+ text-align:center;
+  margin-top: 30px;
+}
+.dynamic {
+border-top: solid #81c7848c;
+    margin-top: 6px;
+    padding-top: 10px;
+}
+.dchak {
+
+	margin-left: -50px;
+    margin-top: 7px;
+}
+
+
+
+.faremove {
+   background-color: #F44336;
+    padding: 3px;
+    border-radius: 4px;
+    color: white;
+    float: right;
+    margin-top: 40px;
+    margin-right: 24px;
+
+}
+
+.chek {
+
+	 float: right;
+    margin-top: 39px;
+    margin-left: -77px;
+    margin-right: 4px;
+}
+
+</style>	
+</head>
+<body>
+
+<div class="col-md-12">
+  <div class="container">
+  	 <h3 class="title3">Create Dynamic Input Filed</h3>
+     <div class="mycontent">
+      <div class="row">
+    	   <div class="col-md-3">
+    	   	<div class="form-group">
+    	     <select id="type" class="form-control"  required>
+                   <option value=""> Select a Input Type </option>
+                   <option  value="text">Text field</option>
+                   <option  value="area">Textarea field</option>
+                   <option  value="num">Number field</option>
+                   <option  value="pass">Password</option>
+                   <option  value="radio">Radio button</option>
+                   <option  value="check">Check box</option>
+                   <option  value="file">File</option>
+                   <option  value="Dropdown">Dropdown</option>
+                   <option  value="Button">Button</option>
+                  </select>
+    	   </div>
+    	 </div>
+    	<div class="col-md-3">
+    	  <div class="form-group ">
+            <input type="text" class="form-control" name="fieldName" id="fieldName" placeholder="Label Name Or Place..">
+       </div>
+    	</div>
+    	<div class="col-md-3">
+    	  <button type="submit" id="create" class="btn btn-success" ><i>+</i> Create Field</button>
+    	</div>
+    	<div class="col-md-3">
+    	  <button type="submit" id="Delete" class="btn btn-danger" >Delete</button>
+    	</div>
+      </div>
+
+    <form class="dynamic">
+      <div id="dynamicField"></div>
+   </form>
+      </div>
+   </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<script>
+$(document).ready(function(){
+
+ 
+ var counter = 0;
+  
+ $("#create").click(function(event){
+   
+  counter++;
+  var $selection = $( "#type option:selected" ).val();
+    var flname =  $('input[name="fieldName"]').val();
+   //alert('this'+ flname);
+  switch ($selection) { 
+          
+   //add Input Text Box
+   case 'text': 
+    var $newDiv = $("<div class='form-group in"+counter+"'><div class='chek'><Input type='checkbox' value='in"+counter+"'></div><label for=''>"+flname+":*</label><a href='javascript:void(0);' class='remove_field'><i class='fa fa-remove faremove'></i></a></div>");
+    var $newInput = $("<input type='text' placeholder='"+flname+"' style='width: 94%;'>");
+    $newInput
+      .attr("name", "fieldName" + counter)
+      .addClass("form-control");
+    $newInput.appendTo($newDiv);
+    $newDiv.appendTo($("#dynamicField"));
+          break;
+
+
+          //add Input Textarea
+   case 'area': 
+    var $newDiv = $("<div class='form-group ar"+counter+"'><div class='chek'><Input type='checkbox' value='ar"+counter+"'></div><label for=''>"+flname+":*</label><a href='javascript:void(0);' class='remove_field'><i class='fa fa-remove faremove'></i></a></div>");
+    var $newInput = $("<textarea name='"+flname+"' row='5' style='width: 94%;'>your Text is here..</textarea>");
+    $newInput
+      .attr("name", "fieldName" + counter)
+      .addClass("form-control");
+    $newInput.appendTo($newDiv);
+    $newDiv.appendTo($("#dynamicField"));
+          break;
+         
+         //add Input password
+   case 'pass': 
+    var $newDiv = $("<div class='form-group ps"+counter+"'><div class='chek'><Input type='checkbox' value='ps"+counter+"'></div><label for=''>"+flname+":*</label><a href='javascript:void(0);' class='remove_field'><i class='fa fa-remove faremove'></i></a></div>");
+    var $newInput = $("<input type='password' placeholder='"+flname+"' style='width: 94%;'>");
+    $newInput
+      .attr("name", "fieldName" + counter)
+      .addClass("form-control");
+    $newInput.appendTo($newDiv);
+    $newDiv.appendTo($("#dynamicField"));
+          break;
+     
+    //add Input number
+   case 'num': 
+    var $newDiv = $("<div class='form-group nu"+counter+"'><div class='chek'><Input type='checkbox' value='nu"+counter+"'></div><label for=''>"+flname+":*</label><a href='javascript:void(0);' class='remove_field'><i class='fa fa-remove faremove'></i></a></div>");
+    var $newInput = $("<input type='number' placeholder='"+flname+"' style='width: 94%;'>");
+    $newInput
+      .attr("name", "fieldName" + counter)
+      .addClass("form-control");
+    $newInput.appendTo($newDiv);
+    $newDiv.appendTo($("#dynamicField"));
+          break;
+
+        //add Input file
+   case 'file': 
+    var $newDiv = $("<div class='form-group fl"+counter+"'><div class='chek'><Input type='checkbox' value='fl"+counter+"'></div><label for=''>"+flname+":*</label><a href='javascript:void(0);' class='remove_field'><i class='fa fa-remove faremove'></i></a></div>");
+    var $newInput = $("<input type='file' placeholder='"+flname+"' style='width: 94%;'>");
+    $newInput
+      .attr("name", "fieldName" + counter)
+      .addClass("form-control");
+    $newInput.appendTo($newDiv);
+    $newDiv.appendTo($("#dynamicField"));
+          break;
+
+         //eta branor jonno this for.. 
+         /*case 'radio': 
+          var numberOfButtons = Math.floor((Math.random()*10)+1);
+          var $newDiv = $("<div class='form-check'><label class='form-check-label' for='exampleRadios1'>"+flname+"</label></div>");
+          for(var i=0;i<numberOfButtons;i++){
+           var $newInput = $("<input type='radio'>");
+     $newInput
+      .attr("name", "fieldName" + counter)
+      .attr("value", "RadioButton" + i)
+      .addClass("form-check-input");
+     if(i==0){
+      $newInput.attr('checked',true);
+     }
+     $newInput.appendTo($newDiv);
+     $newDiv.appendTo($("#dynamicField"));
+     $newInput.after("RadioButton" + i);
+          }
+          break;*/
+           
+         //add Checkboxes 
+         case 'check': 
+          var numberOfButtons = 1;
+          var $newDiv = $("<div class='form-check ch"+counter+"'><div class='chek'><Input type='checkbox' value='ch"+counter+"'></div><label class='form-check-label' for='exampleRadios1'>"+flname+"</label><a href='javascript:void(0);' class='remove_field'><i class='fa fa-remove faremove'></i></a></div>");
+          for(var i=0;i<numberOfButtons;i++){
+           var $newInput = $("<input type='checkbox'>");
+     $newInput
+      .attr("name", "fieldName" + counter)
+      .addClass("form-check-input dchak");
+     if(i==0){
+      $newInput.attr('checked',true);
+     }
+     $newInput.appendTo($newDiv);
+     $newDiv.appendTo($("#dynamicField"));
+          }
+          break;
+           
+           //add radio
+         case 'radio': 
+          var numberOfButtons = 1;
+          var $newDiv = $("<div class='form-check ra"+counter+"'><div class='chek'><Input type='checkbox' value='ra"+counter+"'></div><label class='form-check-label' for='exampleRadios1'>"+flname+"</label><a href='javascript:void(0);' class='remove_field'><i class='fa fa-remove faremove'></i></a></div>");
+          for(var i=0;i<numberOfButtons;i++){
+           var $newInput = $("<input type='radio'>");
+     $newInput
+      .attr("name", "fieldName" + counter)
+      .addClass("form-check-input dchak");
+     if(i==0){
+      $newInput.attr('checked',true);
+     }
+     $newInput.appendTo($newDiv);
+     $newDiv.appendTo($("#dynamicField"));
+          }
+          break;
+           
+
+         //add Dropdown
+         case 'Dropdown': 
+          var numberOfButtons = Math.floor((Math.random()*10)+1);
+          var $newDiv = $("<div class='form-group dr"+counter+"'><div class='chek'><Input type='checkbox' value='dr"+counter+"'></div><label class='' for=''>"+flname+"</label><a href='javascript:void(0);' class='remove_field'><i class='fa fa-remove faremove'></i></a></div>");
+          var $dropDown = $("<select class='form-control'style='width: 94%;'></select>");
+          $dropDown.attr("name", "fieldName" + counter);
+           
+          for(var i=0;i<numberOfButtons;i++){
+           var $newInput = $("<option style='width: 94%;'></option>");
+     $newInput
+      .attr("value", "Option" + i)
+      .addClass("text")
+      .html("Option" + i);
+     $newInput.appendTo($dropDown);
+     $dropDown.appendTo($newDiv);
+     $newDiv.appendTo($("#dynamicField"));
+    }
+          break;
+           
+         //add Button
+         case 'Button': 
+          var $newDiv = $("<div class='bt"+counter+"'><div class='chek'><Input type='checkbox' value='bt"+counter+"'></div><a href='javascript:void(0);' class='remove_field'><i class='fa fa-remove faremove'></i></a></div>");
+    var $newInput = $("<input type='button'>");
+    $newInput
+      .attr("name", "fieldName" + counter)
+      .attr("value", "Submit")
+      .addClass("btn btn-success");
+    $newInput.appendTo($newDiv);
+    $newDiv.appendTo($("#dynamicField"));
+          break;
+  } 
+ });
+
+
+  
+$("#dynamicField").on("click",".remove_field", function(e){ 
+        e.preventDefault();
+ $(this).parent('div').remove(); //remove inout field
+  //inout field decrement
+    })
+
+
+  $("#Delete").click(function(){
+
+	if(confirm("are you sure you want to delete"))
+	{
+		var arr_id = [];
+		
+		$(":checkbox:checked").each(function(i){
+			arr_id[i] = $(this).val();
+		})
+		if(arr_id.length == 0){
+			alert("atleast check one");
+		}else{
+			for(var i = 0;i<arr_id.length;i++){
+				
+				$("."+arr_id[i]).css({"background":"red"});
+			$("."+arr_id[i]).fadeOut("slow");
+
+				
+			}
+		}
+		
+	}
+else{
+	return false;
+}
+	})
+
+
+
+});
+
+
+</script>
+
+</body>
+</html>
